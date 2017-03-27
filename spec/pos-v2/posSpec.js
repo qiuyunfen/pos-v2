@@ -54,4 +54,14 @@ describe('pos', function() {
         ])
     })
 
+    it('should return Receipt object', function() {
+        let receipt = Pos.calItemsPrice([
+            {name: '雪碧', unit: '瓶', price: 3.00, count: 7, promotion: 'BUY_TWO_GET_ONE_FREE'}
+        ]);
+        expect(receipt).toEqual({
+            save: 3,
+            price: 18,
+            receipt: [{name: '雪碧', unit: '瓶', price: 3.00, count: 7, save: 3, price: 18}]
+        })
+    })
 });
