@@ -96,8 +96,16 @@ describe('pos', function() {
         )
     })
 
+    it('should return item receipt when item without promotion', function() {
+        let receipt = Pos.calItemPrice(
+            {name: '苹果', unit: '斤', price: 5.50, count: 7, promotion: ''}
+        )
+        expect(receipt).toEqual(
+            {name: '苹果', unit: '斤', price: 5.50, count: 7, save: 0, sum: 38.5}
+        )
+    })
     it('should return Receipt String', function() {
-       const tags = [
+        const tags = [
             'ITEM000001',
             'ITEM000001',
             'ITEM000001',
@@ -132,6 +140,6 @@ describe('pos', function() {
 节省：7.50(元)
 **********************`;
 
-    expect(console.log).toHaveBeenCalledWith(expectText);
+        expect(console.log).toHaveBeenCalledWith(expectText);
     });
 });
