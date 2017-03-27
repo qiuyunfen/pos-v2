@@ -35,4 +35,13 @@ describe('pos', function() {
             {barcode: 'ITEM000001', count: 7}
         ])
     })
+
+    it('shoule return cartItem info', function() {
+        let cartItems = Pos.getCartItems([
+            {barcode: 'ITEM000001', count: 7}
+        ]);
+        expect(cartItems).toEqual([
+            {barcode: 'ITEM000001', name: '雪碧', unit: '瓶', price: 3.00, count: 7}
+        ])
+    });
 });
