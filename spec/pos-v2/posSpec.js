@@ -75,6 +75,17 @@ describe('pos', function() {
         })
     })
 
+    it('should return Receipt object when item without promotion', function() {
+        let receipt = Pos.calItemsPrice([
+            {name: '苹果', unit: '斤', price: 5.50, count: 7, promotion: ''}
+        ])
+        expect(receipt).toEqual({
+            save: 0,
+            price: 38.5,
+            receipt: [{name: '苹果', unit: '斤', price: 5.50, count: 7, save: 0, sum: 38.5}]
+        })
+
+    })
 
     it('should return Receipt String', function() {
        const tags = [
