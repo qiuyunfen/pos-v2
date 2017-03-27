@@ -46,7 +46,7 @@ describe('pos', function() {
         ])
     });
 
-    it('should return cartItemPromotion info', function() {
+    it('should return cartItemPromotion info when item has promotion info', function() {
         let cartItemsPromtion = Pos.getCartItemsPromotion([
             {barcode: 'ITEM000001', name: '雪碧', unit: '瓶', price: 3.00, count: 7}
         ])
@@ -55,7 +55,16 @@ describe('pos', function() {
         ])
     })
 
-    it('should return Receipt object', function() {
+    it('should return cartItem promotion info when item without promotion info', function() {
+        let cartItemsPromtion = Pos.getCartItemsPromotion([
+            {barcode: 'ITEM000002', name: '苹果', unit: '斤', price: 5.50, count: 7}
+        ])
+        expect(cartItemsPromtion).toEqual([
+            {name: '苹果', unit: '斤', price: 5.50, count: 7, promotion: ''}
+        ])
+    })
+
+    it('should return Receipt object when item has promotion', function() {
         let receipt = Pos.calItemsPrice([
             {name: '雪碧', unit: '瓶', price: 3.00, count: 7, promotion: 'BUY_TWO_GET_ONE_FREE'}
         ]);
@@ -65,6 +74,7 @@ describe('pos', function() {
             receipt: [{name: '雪碧', unit: '瓶', price: 3.00, count: 7, save: 3, sum: 18}]
         })
     })
+
 
     it('should return Receipt String', function() {
        const tags = [
@@ -79,8 +89,6 @@ describe('pos', function() {
         ];
 
         let dateDigitToString = num => (num < 10 ? `0${num}` : num);
-
-        //spyOn(console, 'log');
 
         Pos.printReceipt(tags);
 
