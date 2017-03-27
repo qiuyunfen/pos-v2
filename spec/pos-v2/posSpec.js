@@ -87,6 +87,15 @@ describe('pos', function() {
 
     })
 
+    it('should return item receipt when item has promotion', function() {
+        let receipt = Pos.calItemPrice(
+            {name: '雪碧', unit: '瓶', price: 3.00, count: 7, promotion: 'BUY_TWO_GET_ONE_FREE'}
+        );
+        expect(receipt).toEqual(
+            {name: '雪碧', unit: '瓶', price: 3.00, count: 7, save: 3, sum: 18}
+        )
+    })
+
     it('should return Receipt String', function() {
        const tags = [
             'ITEM000001',
