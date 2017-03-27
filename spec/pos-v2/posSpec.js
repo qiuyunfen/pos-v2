@@ -9,10 +9,10 @@ describe('pos', function() {
         ]);
     })
 
-    // it('should return object 1 when barcodes has count', function() {
-    //     let aBarcodes = analysisBarcode('ITEM000001-3');
-    //     expect(aBarcodes).toEqual([
-    //         {barcode: 'ITEM000001', count: 3}
-    //     ])
-    // })
+    it('should return object 1 when barcodes has count', function() {
+        let aBarcodes = analysisBarcode(['ITEM000001-3']);
+        expect(aBarcodes).toEqual([
+            {barcode: 'ITEM000001', count: 3}
+        ])
+    })
 });
