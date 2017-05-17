@@ -17,11 +17,12 @@ describe('pos', function() {
         ])
     })
 
-    it('shoule return object with count when barcodes no count', function() {
-        let barcodes = Pos.countBarcodes([
+    it('shoule return Item array contain count property when barcodes without -', function() {
+        let inputBarcodes = [
             {barcode: 'ITEM000001', count: 1},
             {barcode: 'ITEM000001', count: 1}
-        ]);
+        ];
+        let barcodes = Pos.countBarcodes(inputBarcodes);
         expect(barcodes).toEqual([
             {barcode: 'ITEM000001', count: 2}
         ]);
